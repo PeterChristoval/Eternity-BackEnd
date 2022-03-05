@@ -1,0 +1,5 @@
+1. Halaman update product, category
+2. Action delete product, category
+3. Konek MongoDB, mongoose
+4. Halaman Admin
+5. Buat RestFul API

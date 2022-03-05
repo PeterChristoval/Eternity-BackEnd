@@ -1,0 +1,66 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row">
+        <div class="col-6 mb-3">
+            <a href="/add_product" class="btn btn-primary">Add Product</a>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Products</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-center">
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Code</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Stock</th>
+                                <th>Label</th>
+                                <th>Image</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <th>1</th>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>jhon@email.com</td>
+                                <td>USA</td>
+                                <td>123</td>
+                                <td>Member</td>
+                                <td>Member</td>
+                                <td>
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#imageDetail">See all</a>
+                                    <div class="modal fade" id="imageDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detail Image</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <form action="/product" method="post" class="d-flex flex-row">
+                                        <a href="/product" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

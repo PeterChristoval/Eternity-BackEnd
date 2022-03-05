@@ -1,0 +1,25 @@
+<div class="container pt-4 px-4">
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-<%= status %> alert-dismissible fade show" role="alert">
+            <strong><%= msg %></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    
+    <form method="post" action="/edit_category/<%= name %>?_method=PUT">
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input autofocus autocomplete="off" value="<%= name %>" type="text" class="form-control" id="category" name="category" placeholder="Product's category">
+            <% if(typeof errors != 'undefined') { %>
+                <% errors.forEach(error => { %>
+                    <p class="text-danger mb-0 mt-1"><%= error.msg %></p>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/categories" class="btn btn-warning ms-3">Back</a>
+    </form>
+</div>

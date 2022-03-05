@@ -1,0 +1,17 @@
+<div class="container pt-4 px-4">
+    <form method="post" action="/edit_label/<%= name %>?_method=PUT" class="all-form">
+
+        <div class="mb-3">
+            <label for="label" class="form-label">Label</label>
+            <input autofocus autocomplete="off" value="<%= name %>" type="text" class="form-control data" id="label" name="label" placeholder="Product's label">
+            <% if(typeof errors != 'undefined') { %>
+                <% errors.forEach(error => { %>
+                    <p class="text-danger mb-0 mt-1"><%= error.msg %></p>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/labels" class="btn btn-warning ms-3">Back</a>
+    </form>
+</div>

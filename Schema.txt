@@ -1,0 +1,34 @@
+Produk : {
+    product_name,
+    product_code,
+    price,
+    Category.name,
+    description,
+    stock,
+    sold,
+    genre,
+    image,
+}
+
+Category : {
+    name,
+}
+
+Transaction : {
+    Produk.product_name,
+    User.username,
+}
+
+User : {
+    email,
+    username,
+    password,
+    profile,
+    level,
+}
+
+Admin : {
+    username,
+    password,
+    level,
+}
