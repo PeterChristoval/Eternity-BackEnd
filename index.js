@@ -190,7 +190,7 @@ app.put('/edit_category/:name',
                 name: req.params.name
             }, { $set: { name: category } });
             req.flash('msg', 'Success edit category');
-            req.flash('status', 'success');
+            req.flash('status', 'updated');
             res.redirect('/categories');
         }
 });

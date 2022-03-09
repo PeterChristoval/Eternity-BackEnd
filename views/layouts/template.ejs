@@ -168,35 +168,6 @@
         const form = document.querySelector('.all-form');
         const status = document.querySelector('.status');
         const flash = document.querySelector('.flash-data');
-
-        // form.onsubmit = (e) => {
-        //     e.preventDefault();
-        //     swal({
-        //         title: 'Are you sure?',
-        //         text: "You won't be able to revert this!",
-        //         type: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Yes, delete it!'
-        //         }).then((res) => {
-        //             console.log(res.isConfirm);
-        //             if (res.isConfirmed) {
-        //                 form.submit();
-        //                 swal(
-        //                     'Deleted!',
-        //                     'Your file has been deleted.',
-        //                     'success'
-        //                 )
-        //             } else {
-        //                 swal(
-        //                     'Tak jadi!',
-        //                     'Your file has been deleted.',
-        //                     'error'
-        //                 )
-        //             }
-        //     })
-        // }
             if(flash.getAttribute('data-flashdata') == 'success') {
                 swal({
                     title: `${status.value.toUpperCase()}!`,
@@ -208,7 +179,6 @@
                     }
                 }).then(
                 function () {},
-                    // handling the promise rejection
                     function (dismiss) {
                         if (dismiss === 'timer') {
                         console.log('I was closed by the timer')
@@ -226,7 +196,6 @@
                     }
                 }).then(
                 function () {},
-                    // handling the promise rejection
                     function (dismiss) {
                         if (dismiss === 'timer') {
                         console.log('I was closed by the timer')
@@ -244,7 +213,6 @@
                     }
                 }).then(
                 function () {},
-                    // handling the promise rejection
                     function (dismiss) {
                         if (dismiss === 'timer') {
                         console.log('I was closed by the timer')
