@@ -1,56 +1,58 @@
 <div class="container pt-4 px-4">
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="/add_product" enctype="multipart/form-data">
 
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Product's name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Product's name" required>
         </div>
 
         <div class="mb-3">
             <label for="code" class="form-label">Code</label>
-            <input type="text" class="form-control" id="code" name="code" placeholder="Product's code">
+            <input type="text" class="form-control" id="code" name="code" placeholder="Product's code" required>
             <div class="form-text">Product's code can't be same with another product</div>
         </div>
 
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="p_price" placeholder="Product's price">
+            <input type="number" class="form-control" id="price" name="p_price" placeholder="Product's price" required>
         </div>
 
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
-            <select class="form-select" aria-label="Default select example" id="category" name="category">
-                <option selected>Choose Category</option>
-                <option value="1">Clothes</option>
-                <option value="2">Pants</option>
+            <select class="form-select" aria-label="Default select example" id="category" name="category" required>
+                <option selected value="">Choose Category</option>
+                <% categories.forEach(category => { %>
+                    <option value=""><%= category.name %></option>
+                <% }) %>
             </select>
         </div>
 
         <div class="mb-3">
             <label for="label" class="form-label">Label</label>
-            <select class="form-select" aria-label="Default select example" id="label" name="label">
-                <option selected>Choose label</option>
-                <option value="1">Popular</option>
-                <option value="2">Stylish</option>
+            <select class="form-select" aria-label="Default select example" id="label" name="label" placeholder="asdas" required>
+                <option selected value="">Choose label</option>
+                <% labels.forEach(label => { %>
+                    <option value=""><%= label.name %></option>
+                <% }) %>
             </select>
         </div>
         
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <div class="form-floating">
-                <textarea class="form-control" id="description" name="description" placeholder="Product's description" style="height: 100px"></textarea>
+                <textarea class="form-control" id="description" name="description" placeholder="Product's description" style="height: 100px" required></textarea>
                 <label for="description">Product's description</label>
             </div>
         </div>
         
         <div class="mb-3">
             <label for="stock" class="form-label">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" placeholder="Product's stock">
+            <input type="number" class="form-control" id="stock" name="stock" placeholder="Product's stock" required>
         </div>
 
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
-            <input type="file" class="form-control" id="img" name="img" multiple>
+            <input type="file" class="form-control" id="img" name="img" multiple required>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -25,38 +25,46 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <th>1</th>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>jhon@email.com</td>
-                                <td>USA</td>
-                                <td>123</td>
-                                <td>Member</td>
-                                <td>Member</td>
-                                <td>
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#imageDetail">See all</a>
-                                    <div class="modal fade" id="imageDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Detail Image</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <% if(products.length == 0) { %>
+                                <tr>
+                                    <td colspan="10" align="center"><h5>No data available</h5></td>
+                                </tr>
+                            <% } else { %>
+                                <% products.forEach((product, i) => { %>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                        <td>USA</td>
+                                        <td>123</td>
+                                        <td>Member</td>
+                                        <td>Member</td>
+                                        <td>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#imageDetail" style="background-color: rgba(92, 92, 92, 0.933); border-radius: 20px; padding: 0px 18px; color: whitesmoke">See all</a>
+                                            <div class="modal fade" id="imageDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Image</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ...
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <form action="/product" method="post" class="d-flex flex-row">
-                                        <a href="/product" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
-                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
+                                        </td>
+                                        <td>
+                                            <form action="/product" method="post" class="d-flex flex-row">
+                                                <a href="/product" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

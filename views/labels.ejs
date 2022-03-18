@@ -1,5 +1,6 @@
 <div class="container pt-4 px-4">
-    <div class="flash-data" data-flashdata="<%= status %>"></div>
+    <div class="flash-status" data-flashdata="<%= status %>"></div>
+    <div class="flash-msg" data-flashdata="<%= msg %>"></div>
     <a href="add_label" class="btn btn-primary mb-4">Add Label</a>
     <% if(labels.length === 0) { %>
         <div class="card px-3 px-md-5">

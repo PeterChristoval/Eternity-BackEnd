@@ -14,6 +14,7 @@ require('./connect-db/mongoose');
 // model
 const Category = require('./model/Category');
 const Label = require('./model/Label');
+const Product = require('./model/Product');
 
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
@@ -47,20 +48,30 @@ app.get('/', (req, res) => {
 
 
 // Product
-app.get('/products', (req, res) => {
+app.get('/products', async (req, res) => {
+    const products = await Product.find();
     res.render('products', {
         title: 'Eternity | Product',
         layout: 'layouts/template',
         url: '/product',
+        products,
     });
 });
 
-app.get('/add_product', (req, res) => {
+app.get('/add_product', async (req, res) => {
+    const categories = await Category.find();
+    const labels = await Label.find();
     res.render('addProduct', {
         title: 'Eternity | Add Product',
         layout: 'layouts/template',
         url: '/product',
+        categories,
+        labels,
     });
+});
+
+app.post('/add_product', async (req,res) => {
+    
 });
 // End Product
 
@@ -129,7 +140,7 @@ app.post('/add_category',
             });
             await category.save();
             req.flash('msg', 'Success add new category');
-            req.flash('status', 'success');
+            req.flash('status', 'created');
             res.redirect('/add_category');
         }
 });
@@ -200,12 +211,12 @@ app.delete('/delete_category/:name', async (req, res) => {
         const name = req.params.name;
         await Category.deleteOne({name});
         req.flash('msg', 'Success delete a category');
-        req.flash('status', 'success');
+        req.flash('status', 'deleted');
         res.redirect('/categories');
     } catch (error) {
         console.error(error.message);
         req.flash('msg', 'Fail delete a category');
-        req.flash('status', 'danger');
+        req.flash('status', 'Failed');
         res.redirect('/categories');
     }
 });
@@ -276,7 +287,7 @@ app.post('/add_label',
             });
             await label.save();
             req.flash('msg', 'Success add new label');
-            req.flash('status', 'success');
+            req.flash('status', 'created');
             res.redirect('/add_label');
         }
 });
@@ -345,12 +356,12 @@ app.delete('/labels/:name', async(req, res) => {
     try {
         await Label.deleteOne({name: req.params.name});
         req.flash('msg', 'Succes delete a label');
-        req.flash('status', 'success');
+        req.flash('status', 'deleted');
         res.redirect('/labels');
     } catch (error) {
         console.log(error);
         req.flash('msg', 'Fail delete a label');
-        req.flash('status', 'danger');
+        req.flash('status', 'failed');
     }
 });
 // End Label

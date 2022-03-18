@@ -165,14 +165,14 @@
     <script src="/js/main.js"></script>
     
     <script>
-        const form = document.querySelector('.all-form');
-        const status = document.querySelector('.status');
-        const flash = document.querySelector('.flash-data');
-            if(flash.getAttribute('data-flashdata') == 'success') {
+        const flashStatus = document.querySelector('.flash-status');
+        const flashMsg = document.querySelector('.flash-msg');
+        console.log(flashStatus.getAttribute('data-flashdata').toString());
+            if(flashStatus.getAttribute('data-flashdata') != 'failed' && flashStatus.getAttribute('data-flashdata') != '') {
                 swal({
-                    title: `${status.value.toUpperCase()}!`,
-                    text: `Data has been ${status.value.toLowerCase()}!`,
-                    timer: 1300,
+                    title: `${flashStatus.getAttribute('data-flashdata').toUpperCase()}!`,
+                    text: `${flashMsg.getAttribute('data-flashdata')}!`,
+                    timer: 900,
                     type: 'success',
                     onOpen: function () {
                         swal.showLoading()
@@ -185,27 +185,10 @@
                         }
                     }
                 )
-            } else if(flash.getAttribute('data-flashdata') == 'updated') {
+            } else if(flashStatus.getAttribute('data-flashdata') == 'failed') {
                 swal({
-                    title: `Updated!`,
-                    text: `Data has been updated!`,
-                    timer: 1300,
-                    type: 'success',
-                    onOpen: function () {
-                        swal.showLoading()
-                    }
-                }).then(
-                function () {},
-                    function (dismiss) {
-                        if (dismiss === 'timer') {
-                        console.log('I was closed by the timer')
-                        }
-                    }
-                )
-            } else if(flash.getAttribute('data-flashdata') == 'danger') {
-                swal({
-                    title: `Oops!`,
-                    text: `There is something wrong!`,
+                    title: `${flashStatus.getAttribute('data-flashdata').toUpperCase()}!`,
+                    text: `${flashMsg.getAttribute('data-flashdata')}!`,
                     timer: 1300,
                     type: 'error',
                     onOpen: function () {
