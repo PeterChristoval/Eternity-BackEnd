@@ -38,18 +38,22 @@ app.listen(port, () => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    const products = await Product.find();
+    const totalProducts = products.length;
     res.render('index', {
         title: 'Eternity | Dashboard',
         layout: 'layouts/template',
         url: '/',
+        totalProducts,
     });
 });
 
 
 // Product
 app.get('/products', async (req, res) => {
-    const products = await Product.find();
+    const products = await Product.find().populate([{ path: "category_id", select: "name" }, { path: "label_id", select: "name" }]);
+    console.log(products);
     res.render('products', {
         title: 'Eternity | Product',
         layout: 'layouts/template',
@@ -67,11 +71,55 @@ app.get('/add_product', async (req, res) => {
         url: '/product',
         categories,
         labels,
+        msg: req.flash('msg'),
+        status: req.flash('status'),
     });
 });
 
-app.post('/add_product', async (req,res) => {
-    
+app.post('/add_product',
+    [
+        check('name', 'The name is too long').isLength({ max: 40 }),
+        check('code', 'The code is too long').isLength({ max: 20 }),
+        check('description', 'The desription is too long').isLength({ max: 300 }),
+        body('code').custom(async (value) => {
+            const code = value.toLowerCase();
+            const check = await Product.findOne({ code });
+            if (check) {
+                throw new Error('The code is already taken');
+            }
+            return true;
+        }),
+    ],
+    async (req,res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            const categories = await Category.find();
+            const labels = await Label.find();
+            res.render('addProduct', {
+                title: 'Eternity | Add Product',
+                layout: 'layouts/template',
+                url: '/product',
+                categories,
+                labels,
+                errors: errors.array(),
+                msg: req.flash('msg'),
+                status: req.flash('status'),
+            });
+        } else {
+            const product = new Product({
+                name: req.body.name,
+                code: req.body.code.toLowerCase(),
+                price: req.body.price,
+                description: req.body.description,
+                stock: req.body.stock,
+                category_id: req.body.category,
+                label_id: req.body.label,
+            });
+            await product.save();
+            req.flash('msg', 'Success add new product');
+            req.flash('status', 'created');
+            res.redirect('/add_product');
+        }
 });
 // End Product
 

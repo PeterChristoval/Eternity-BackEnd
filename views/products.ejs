@@ -17,9 +17,9 @@
                                 <th>Code</th>
                                 <th>Price</th>
                                 <th>Category</th>
-                                <th>Description</th>
-                                <th>Stock</th>
                                 <th>Label</th>
+                                <th>Stock</th>
+                                <th>Description</th>
                                 <th>Image</th>
                                 <th></th>
                             </tr>
@@ -32,16 +32,31 @@
                             <% } else { %>
                                 <% products.forEach((product, i) => { %>
                                     <tr>
-                                        <th>1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>jhon@email.com</td>
-                                        <td>USA</td>
-                                        <td>123</td>
-                                        <td>Member</td>
-                                        <td>Member</td>
+                                        <th><%= i+1 %></th>
+                                        <td><%= product.name %></td>
+                                        <td><%= product.code %></td>
+                                        <td><%= product.price %></td>
+                                        <td><%= product.category_id.name %></td>
+                                        <td><%= product.label_id.name %></td>
+                                        <td><%= product.stock %></td>
                                         <td>
-                                            <a type="button" data-bs-toggle="modal" data-bs-target="#imageDetail" style="background-color: rgba(92, 92, 92, 0.933); border-radius: 20px; padding: 0px 18px; color: whitesmoke">See all</a>
+                                            <a data-description="<%= product.description %>" class="descriptionDetail text-truncate" type="button" data-bs-toggle="modal" data-bs-target="#descriptionDetail" style="max-width: 130px; background-color: rgba(122, 121, 121, 0.933); border-radius: 6px; padding: 4px 18px; color: whitesmoke"><%= product.description %></a>
+                                            <div class="modal fade" id="descriptionDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Description</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a type="button" data-bs-toggle="modal" data-bs-target="#imageDetail" style="background-color: rgba(122, 121, 121, 0.933); border-radius: 6px; padding: 4px 18px; color: whitesmoke">See all</a>
                                             <div class="modal fade" id="imageDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                     <div class="modal-content">

@@ -19,6 +19,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <!-- Sweetalert2@7.33.1 -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.css'>
@@ -163,6 +164,16 @@
 
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
+
+    <script>
+        const tes = document.querySelectorAll('.descriptionDetail');
+        const a = document.querySelector('.modal-body');
+        tes.forEach(e => {
+            e.addEventListener('click', function() {
+                a.innerHTML = e.getAttribute('data-description').toString();
+            })
+        });
+    </script>
     
     <script>
         const flashStatus = document.querySelector('.flash-status');
